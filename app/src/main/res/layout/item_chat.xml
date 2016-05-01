@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/chat_padding"
+    android:layout_marginBottom="@dimen/chat_padding"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:padding="@dimen/chat_padding"
+    android:background="#FFFFFF">
+
+    <ImageView
+        android:id="@+id/chat_avatar"
+        android:layout_width="@dimen/avatar_size"
+        android:layout_height="@dimen/avatar_size"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_account_circle" />
+
+    <TextView
+        android:id="@+id/chat_sender_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/md_keylines"
+        android:layout_toRightOf="@+id/chat_avatar"
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:textSize="@dimen/chat_sender_text_size" />
+
+    <TextView
+        android:id="@+id/chat_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/chat_sender_name"
+        android:layout_marginLeft="@dimen/md_keylines"
+        android:layout_toRightOf="@+id/chat_avatar"
+        android:textColor="@color/colorPrimaryText"
+        android:ellipsize="end"
+        android:singleLine="false"
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:textSize="@dimen/chat_message_text_size" />
+
+</RelativeLayout>
+
