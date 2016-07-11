@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AndroidBeginnerChat.iml" filepath="$PROJECT_DIR$/AndroidBeginnerChat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AndroidBeginnersChat.iml" filepath="$PROJECT_DIR$/AndroidBeginnersChat.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/slyce-messaging-ui/slyce-messaging-ui.iml" filepath="$PROJECT_DIR$/slyce-messaging-ui/slyce-messaging-ui.iml" />
     </modules>
   </component>
 </project>
