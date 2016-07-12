@@ -1,1 +1,1 @@
-include ':app', ':slyce-messaging-ui'
+include ':app', ':slyce-messaging'

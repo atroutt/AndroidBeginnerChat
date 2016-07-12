@@ -26,6 +26,12 @@ android {
     }
 }
 
+repositories {
+    maven {
+        url "https://s3.amazonaws.com/repo.commonsware.com"
+    }
+}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
@@ -37,6 +43,10 @@ dependencies {
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
     compile 'com.firebase:firebase-client-android:2.5.2+'
 
-    compile project(':slyce-messaging-ui')
     compile 'com.makeramen:roundedimageview:2.2.1'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'de.hdodenhof:circleimageview:2.0.0'
+    compile 'com.commonsware.cwac:cam2:0.6.2'
+
+    compile project(':slyce-messaging')
 }

@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AndroidBeginnersChat.iml" filepath="$PROJECT_DIR$/AndroidBeginnersChat.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/slyce-messaging-ui/slyce-messaging-ui.iml" filepath="$PROJECT_DIR$/slyce-messaging-ui/slyce-messaging-ui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/slyce-messaging/slyce-messaging.iml" filepath="$PROJECT_DIR$/slyce-messaging/slyce-messaging.iml" />
     </modules>
   </component>
 </project>
