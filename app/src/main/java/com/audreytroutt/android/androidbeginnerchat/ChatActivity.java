@@ -8,12 +8,12 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.slyce.slyce_messaging.messenger.SlyceMessagingFragment;
-import it.slyce.slyce_messaging.messenger.listeners.ShouldLoadMoreMessagesListener;
-import it.slyce.slyce_messaging.messenger.listeners.UserSendsMessageListener;
-import it.slyce.slyce_messaging.messenger.message.Message;
-import it.slyce.slyce_messaging.messenger.message.MessageSource;
-import it.slyce.slyce_messaging.messenger.message.TextMessage;
+import it.slyce.messaging.SlyceMessagingFragment;
+import it.slyce.messaging.listeners.LoadMoreMessagesListener;
+import it.slyce.messaging.listeners.UserSendsMessageListener;
+import it.slyce.messaging.message.Message;
+import it.slyce.messaging.message.MessageSource;
+import it.slyce.messaging.message.TextMessage;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -28,9 +28,9 @@ public class ChatActivity extends AppCompatActivity {
         slyceMessagingFragment.setDefaultAvatarUrl("https://cfcdnpull-creativefreedoml.netdna-ssl.com/wp-content/uploads/2013/03/00-android-4-0_icons.png");
         slyceMessagingFragment.setDefaultDisplayName("Android Beginner");
         slyceMessagingFragment.setMoreMessagesExist(false);
-        slyceMessagingFragment.setShouldLoadMoreMessagesListener(new ShouldLoadMoreMessagesListener() {
+        slyceMessagingFragment.setLoadMoreMessagesListener(new LoadMoreMessagesListener() {
             @Override
-            public List<Message> shouldLoadMoreMessages() {
+            public List<Message> loadMoreMessages() {
                 return new ArrayList<Message>();
             }
         });
@@ -39,7 +39,7 @@ public class ChatActivity extends AppCompatActivity {
         welcomeMessage.setAvatarUrl("https://cfcdnpull-creativefreedoml.netdna-ssl.com/wp-content/uploads/2013/03/00-android-4-0_icons.png");
         welcomeMessage.setText("Welcome to beginner chat!");
         welcomeMessage.setDate(System.currentTimeMillis());
-        welcomeMessage.setOrigin(MessageSource.EXTERNAL_USER);
+        welcomeMessage.setSource(MessageSource.EXTERNAL_USER);
         welcomeMessage.setDisplayName("Android Friend");
         slyceMessagingFragment.addNewMessage(welcomeMessage);
 
