@@ -13,10 +13,9 @@
 
         <fragment
             android:id="@+id/messaging_fragment"
-            android:scrollbars="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            class="it.slyce.slyce_messaging.messenger.SlyceMessagingFragment"/>
+            class="it.slyce.messaging.SlyceMessagingFragment"/>
     </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>
