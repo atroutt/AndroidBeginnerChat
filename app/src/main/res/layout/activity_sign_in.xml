@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:src="@drawable/ic_android_hi" />
+        android:src="@drawable/ic_beginner_chat" />
 
     <LinearLayout
         android:id="@+id/layout_email_password"
