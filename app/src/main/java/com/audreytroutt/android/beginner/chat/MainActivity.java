@@ -9,19 +9,28 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.audreytroutt.android.beginner.chat.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private static final String TAG = "MainActivity";
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -31,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @BindView(R.id.nav_view)
     NavigationView navigationView;
+
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +58,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("users").child(currentUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        User user = dataSnapshot.getValue(User.class);
+                        View header = MainActivity.this.navigationView.getHeaderView(0);
+                        TextView userNameView = (TextView) header.findViewById(R.id.user_name_text_view);
+                        userNameView.setText(user.username);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.w(TAG, "getUser:onCancelled", databaseError.toException());
+                    }
+        });
+
         View header = navigationView.getHeaderView(0);
-        TextView userNameView = (TextView) header.findViewById(R.id.user_name_text_view);
-        userNameView.setText(currentUser.getDisplayName());
         TextView userEmailView = (TextView) header.findViewById(R.id.user_email_text_view);
         userEmailView.setText(currentUser.getEmail());
     }
