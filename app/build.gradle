@@ -6,7 +6,7 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "com.audreytroutt.android.androidbeginnerchat"
+        applicationId "com.audreytroutt.android.beginner.chat"
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 1

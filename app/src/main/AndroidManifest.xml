@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.audreytroutt.android.androidbeginnerchat" >
+    package="com.audreytroutt.android.beginner.chat" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
