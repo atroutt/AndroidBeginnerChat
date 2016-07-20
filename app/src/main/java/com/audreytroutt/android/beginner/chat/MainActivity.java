@@ -12,6 +12,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,6 +28,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @BindView(R.id.drawer_layout)
     DrawerLayout drawer;
+
+    @BindView(R.id.nav_view)
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +46,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        View header = navigationView.getHeaderView(0);
+        TextView userNameView = (TextView) header.findViewById(R.id.user_name_text_view);
+        userNameView.setText(currentUser.getDisplayName());
+        TextView userEmailView = (TextView) header.findViewById(R.id.user_email_text_view);
+        userEmailView.setText(currentUser.getEmail());
     }
 
     @OnClick(R.id.fab)
