@@ -111,7 +111,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.sign_out) {
+            FirebaseAuth.getInstance().signOut();
+            // Go to SignInActivity
+            startActivity(new Intent(MainActivity.this, SignInActivity.class));
+            finish();
             return true;
         }
 
