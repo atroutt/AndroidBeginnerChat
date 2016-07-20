@@ -15,6 +15,7 @@ import it.slyce.messaging.message.MessageSource;
 import it.slyce.messaging.message.TextMessage;
 
 import com.audreytroutt.android.beginner.chat.model.Message;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -47,10 +48,10 @@ public class ChatActivity extends AppCompatActivity {
                 welcomeMessage.setAvatarUrl("https://cfcdnpull-creativefreedoml.netdna-ssl.com/wp-content/uploads/2013/03/00-android-4-0_icons.png");
                 welcomeMessage.setText(newPost.body);
                 welcomeMessage.setDate(System.currentTimeMillis());
-                if (newPost.author.equals("other")) {
-                    welcomeMessage.setSource(MessageSource.EXTERNAL_USER);
-                } else {
+                if (newPost.uid.equals(getUid())) {
                     welcomeMessage.setSource(MessageSource.LOCAL_USER);
+                } else {
+                    welcomeMessage.setSource(MessageSource.EXTERNAL_USER);
                 }
                 slyceMessagingFragment.addNewMessage(welcomeMessage);
             }
@@ -93,7 +94,6 @@ public class ChatActivity extends AppCompatActivity {
         welcomeMessage.setText("Welcome to beginner chat!");
         welcomeMessage.setDate(System.currentTimeMillis());
         welcomeMessage.setSource(MessageSource.EXTERNAL_USER);
-        welcomeMessage.setDisplayName("Android Friend");
         slyceMessagingFragment.addNewMessage(welcomeMessage);
 
         slyceMessagingFragment.setOnSendMessageListener(new UserSendsMessageListener() {
@@ -108,5 +108,8 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
     }
-}
 
+    public String getUid() {
+        return FirebaseAuth.getInstance().getCurrentUser().getUid();
+    }
+}
