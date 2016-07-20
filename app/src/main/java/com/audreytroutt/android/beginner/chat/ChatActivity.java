@@ -6,28 +6,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import it.slyce.messaging.SlyceMessagingFragment;
 import it.slyce.messaging.listeners.LoadMoreMessagesListener;
 import it.slyce.messaging.listeners.UserSendsMessageListener;
-import it.slyce.messaging.message.Message;
 import it.slyce.messaging.message.MessageSource;
 import it.slyce.messaging.message.TextMessage;
 
-import com.audreytroutt.android.beginner.chat.message.ChatMessage;
+import com.audreytroutt.android.beginner.chat.model.Message;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.Exclude;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.IgnoreExtraProperties;
 import com.google.firebase.database.Query;
-import com.firebase.ui.database.*;
-import com.google.firebase.database.ValueEventListener;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -42,14 +35,14 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        Query ref = mDatabase.child("posts").startAt(mMessages.size()).limitToFirst(20);
+        Query ref = mDatabase.child("posts").limitToFirst(20);
 
         ref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 mMessages.add(dataSnapshot);
 
-                ChatMessage newPost = dataSnapshot.getValue(ChatMessage.class);
+                Message newPost = dataSnapshot.getValue(Message.class);
                 TextMessage welcomeMessage = new TextMessage();
                 welcomeMessage.setAvatarUrl("https://cfcdnpull-creativefreedoml.netdna-ssl.com/wp-content/uploads/2013/03/00-android-4-0_icons.png");
                 welcomeMessage.setText(newPost.body);
@@ -90,8 +83,8 @@ public class ChatActivity extends AppCompatActivity {
         slyceMessagingFragment.setMoreMessagesExist(false);
         slyceMessagingFragment.setLoadMoreMessagesListener(new LoadMoreMessagesListener() {
             @Override
-            public List<Message> loadMoreMessages() {
-                return new ArrayList<Message>();
+            public List<it.slyce.messaging.message.Message> loadMoreMessages() {
+                return new ArrayList<it.slyce.messaging.message.Message>();
             }
         });
 

@@ -1,4 +1,4 @@
-package com.audreytroutt.android.beginner.chat.message;
+package com.audreytroutt.android.beginner.chat.model;
 
 import com.google.firebase.database.Exclude;
 
@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * Created by audrey on 5/1/16.
  */
-public class ChatMessage {
+public class Message {
     public String uid;
     public String author;
     public String title;
@@ -16,11 +16,11 @@ public class ChatMessage {
     public int starCount = 0;
     public Map<String, Boolean> stars = new HashMap<>();
 
-    public ChatMessage() {
+    public Message() {
         // Default constructor required for calls to DataSnapshot.getValue(Post.class)
     }
 
-    public ChatMessage(String uid, String author, String title, String body) {
+    public Message(String uid, String author, String title, String body) {
         this.uid = uid;
         this.author = author;
         this.title = title;
